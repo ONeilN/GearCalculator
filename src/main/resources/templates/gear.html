@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="#" th:action="@{/gear}" th:object="${greeting}" method="post">
+    <p>Teeth1: <input type="text" th:field="*{teeth1}" /></p>
+    <p>Teeth2: <input type="text" th:field="*{teeth2}" /></p>
+    <p>Width: <input type="text" th:field="*{width}" /></p>
+    <p>Module: <input type="text" th:field="*{module}" /></p>
+    <p>Angle: <input type="text" th:field="*{angle}" /></p>
+    <p>X: <input type="text" th:field="*{x}" /></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+</body>
+</html>
