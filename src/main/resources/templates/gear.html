@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Gear Calculator</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<form action="#" th:action="@{/gear}" th:object="${greeting}" method="post">
+<form action="#" th:action="@{/gear}" th:object="${gearUtil}" method="post">
     <p>Teeth1: <input type="text" th:field="*{teeth1}" placeholder="For example: 50"/></p>
     <p>Teeth2: <input type="text" th:field="*{teeth2}" placeholder="For example: 50"/></p>
     <p>Width: <input type="text" th:field="*{width}" placeholder="For example: 20"/></p>
