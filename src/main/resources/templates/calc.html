@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gear Calculator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
+    <p>Teeth1: <input type="text" th:field="*{teeth1}" placeholder="For example: 50"/></p>
+    <p>Teeth2: <input type="text" th:field="*{teeth2}" placeholder="For example: 50"/></p>
+    <p><input type="submit" value="Submit" name="gearRatio"/></p>
+</form>
+</body>
+</html>

@@ -1,9 +1,9 @@
-package com.nugumanov.gearcalculator;
+package com.nugumanov.gearcalculator.util;
 
 import ru.itis.software.engineering.gear.library.Module;
 import ru.itis.software.engineering.gear.library.gearExample.Gear;
 
-public class Greeting {
+public class GearUtil {
 
     private String teeth1;
     private String teeth2;
@@ -68,8 +68,6 @@ public class Greeting {
         double doubleAngle = Double.parseDouble(angle);
         double doubleX = Double.parseDouble(x);
         Gear gear = new Gear(longTeeth1, longTeeth2, floatWidth, mModule, doubleAngle, doubleX);
-
-        System.out.println(mModule.toString());
         return gear.getDiameter().toString();
     }
 }
