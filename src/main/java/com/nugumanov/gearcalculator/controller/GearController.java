@@ -1,6 +1,8 @@
 package com.nugumanov.gearcalculator.controller;
 
-import com.nugumanov.gearcalculator.util.GearUtil;
+import com.nugumanov.gearcalculator.domain.Gear;
+import com.nugumanov.gearcalculator.repos.GearRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -8,20 +10,28 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class GearController {
 
-    @RequestMapping(value = "/gear", method = RequestMethod.GET)
+    @Autowired
+    private GearRepo gearRepo;
+
+    @RequestMapping(value = "/addgear", method = RequestMethod.GET)
     public String greetingForm(Model model) {
-        model.addAttribute("gearUtil", new GearUtil());
-        return "gear";
+        Iterable<Gear> gears = gearRepo.findAll();
+        model.addAttribute("gears", gears);
+        model.addAttribute("gear", new Gear());
+        return "addGear";
     }
 
-    @RequestMapping(value = "/gear",
+    @RequestMapping(value = "/addGear",
             method = RequestMethod.POST,
-            params = "gearRatio")
-    public String greetingSubmit(
-            @ModelAttribute GearUtil gearUtil,
+            params = "add")
+    public String add(
+            @ModelAttribute Gear gear,
             Model model
     ) {
-        model.addAttribute("gearUtil", gearUtil);
-        return "gearRatioResult";
+        gearRepo.save(gear);
+
+        Iterable<Gear> gears = gearRepo.findAll();
+        model.addAttribute("gears", gears);
+        return "addGear";
     }
 }

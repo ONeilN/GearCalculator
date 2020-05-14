@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Gear Calculator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="#" th:action="@{/addGear}" th:object="${gear}" method="post">
+    <p>Teeth1: <input type="text" th:field="*{teeth}" placeholder="For example: 50"/></p>
+    <p>Width: <input type="text" th:field="*{width}" placeholder="For example: 20"/></p>
+    <p>Module: <input type="text" th:field="*{module}" placeholder="For example: MODULE3"/></p>
+    <p>Angle: <input type="text" th:field="*{angle}" placeholder="For example: 20"/></p>
+    <p>X: <input type="text" th:field="*{x}" placeholder="For example: 0"/></p>
+    <p><input type="submit" value="Добавить" th:name="add"/></p>
+</form>
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Teeth1</td>
+        <td>Width</td>
+        <td>Module</td>
+        <td>Angle</td>
+        <td>X</td>
+    </tr>
+    <tr th:each="gear : ${gears}">
+        <td><span th:text="${gear.id}"></span></td>
+        <td><span th:text="${gear.teeth}"></span></td>
+        <td><span th:text="${gear.width}"></span></td>
+        <td><span th:text="${gear.module}"></span></td>
+        <td><span th:text="${gear.angle}"></span></td>
+        <td><span th:text="${gear.x}"></span></td>
+    </tr>
+</table>
+</body>
+</html>

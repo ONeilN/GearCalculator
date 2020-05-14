@@ -5,10 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<h2>Вычислить передаточное отншение</h2>
 <form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
-    <p>Teeth1: <input type="text" th:field="*{teeth1}" placeholder="For example: 50"/></p>
-    <p>Teeth2: <input type="text" th:field="*{teeth2}" placeholder="For example: 50"/></p>
-    <p><input type="submit" value="Submit" name="gearRatio"/></p>
+    <table>
+        <tr>
+            <td>ID1: <input type="text" th:field="*{id1}" /></td>
+            <td>ID2: <input type="text" th:field="*{id2}" /></td>
+        </tr>
+    </table>
+    <p><input type="submit" value="Вычислить" name="gearRatio"/></p>
 </form>
+<p>Результат: <span th:text="${result}" th:unless="${calcUtil.id1 == null}"></span></p>
+<hr>
 </body>
 </html>
