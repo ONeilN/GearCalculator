@@ -12,20 +12,19 @@ public class Gear {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    private String teeth1;
-    private String width;
+    private Long teeth;
+    private Float width;
     private String module;
-    private String angle;
-    private String x;
+    private Double angle;
+    private Double x;
 
     public Gear() {
 
     }
 
-    public Gear(Integer id, String teeth1, String teeth2,
-                String width, String module, String angle, String x) {
+    public Gear(Integer id, Long teeth, Float width, String module, Double angle, Double x) {
         this.id = id;
-        this.teeth1 = teeth1;
+        this.teeth = teeth;
         this.width = width;
         this.module = module;
         this.angle = angle;
@@ -40,19 +39,19 @@ public class Gear {
         this.id = id;
     }
 
-    public String getTeeth1() {
-        return teeth1;
+    public Long getTeeth() {
+        return teeth;
     }
 
-    public void setTeeth1(String teeth1) {
-        this.teeth1 = teeth1;
+    public void setTeeth(Long teeth) {
+        this.teeth = teeth;
     }
 
-    public String getWidth() {
+    public Float getWidth() {
         return width;
     }
 
-    public void setWidth(String width) {
+    public void setWidth(Float width) {
         this.width = width;
     }
 
@@ -64,19 +63,19 @@ public class Gear {
         this.module = module;
     }
 
-    public String getAngle() {
+    public Double getAngle() {
         return angle;
     }
 
-    public void setAngle(String angle) {
+    public void setAngle(Double angle) {
         this.angle = angle;
     }
 
-    public String getX() {
+    public Double getX() {
         return x;
     }
 
-    public void setX(String x) {
+    public void setX(Double x) {
         this.x = x;
     }
 }

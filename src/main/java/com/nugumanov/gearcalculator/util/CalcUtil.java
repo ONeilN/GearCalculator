@@ -1,34 +1,40 @@
 package com.nugumanov.gearcalculator.util;
 
-import ru.itis.software.engineering.gear.library.GearLibrary;
+import com.nugumanov.gearcalculator.repos.GearRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class CalcUtil {
 
-    private String teeth1;
-    private String teeth2;
+    @Autowired
+    private GearRepo gearRepo;
 
-    public String getTeeth1() {
-        return teeth1;
+    private Integer id1;
+    private Integer id2;
+
+    private String result;
+
+
+    public Integer getId1() {
+        return id1;
     }
 
-    public void setTeeth1(String teeth1) {
-        this.teeth1 = teeth1;
+    public void setId1(Integer id1) {
+        this.id1 = id1;
     }
 
-    public String getTeeth2() {
-        return teeth2;
+    public Integer getId2() {
+        return id2;
     }
 
-    public void setTeeth2(String teeth2) {
-        this.teeth2 = teeth2;
+    public void setId2(Integer id2) {
+        this.id2 = id2;
     }
 
-    public String getGearRatio() {
-        long lTeeth1 = Long.parseLong(teeth1);
-        long lTeeth2 = Long.parseLong(teeth2);
+    public String getResult() {
+        return result;
+    }
 
-        Double gearRatio = GearLibrary.GEAR_LIBRARY.getGearRatio(lTeeth1, lTeeth2);
-
-        return gearRatio.toString();
+    public void setResult(String result) {
+        this.result = result;
     }
 }
