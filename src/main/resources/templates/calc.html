@@ -13,9 +13,22 @@
             <td>ID2: <input type="text" th:field="*{id2}" /></td>
         </tr>
     </table>
-    <p><input type="submit" value="Вычислить" name="gearRatio"/></p>
+    <p><input type="submit" value="Вычислить" name="getGearRatio"/></p>
 </form>
 <p>Результат: <span th:text="${result}" th:unless="${calcUtil.id1 == null}"></span></p>
+<hr>
+<h2>Вычислить расстояние между центрами шестерен</h2>
+<form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
+    <table>
+        <tr>
+            <td>ID1: <input type="text" th:field="*{id1}" /></td>
+            <td>ID2: <input type="text" th:field="*{id2}" /></td>
+            <td>Teeth Angle: <input type="text" th:field="*{teethAngle}" /></td>
+        </tr>
+    </table>
+    <p><input type="submit" value="Вычислить" name="getGearCenterDistance"/></p>
+</form>
+<p>Результат: <span th:text="${distance}" th:unless="${calcUtil.id1 == null}"></span></p>
 <hr>
 </body>
 </html>

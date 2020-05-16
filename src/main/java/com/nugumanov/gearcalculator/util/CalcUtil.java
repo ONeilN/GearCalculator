@@ -1,15 +1,10 @@
 package com.nugumanov.gearcalculator.util;
 
-import com.nugumanov.gearcalculator.repos.GearRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-
 public class CalcUtil {
-
-    @Autowired
-    private GearRepo gearRepo;
 
     private Integer id1;
     private Integer id2;
+    private double teethAngle;
 
     private String result;
 
@@ -28,6 +23,14 @@ public class CalcUtil {
 
     public void setId2(Integer id2) {
         this.id2 = id2;
+    }
+
+    public double getTeethAngle() {
+        return teethAngle;
+    }
+
+    public void setTeethAngle(double teethAngle) {
+        this.teethAngle = teethAngle;
     }
 
     public String getResult() {

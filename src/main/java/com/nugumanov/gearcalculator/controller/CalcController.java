@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.itis.software.engineering.gear.library.GearLibrary;
+import ru.itis.software.engineering.gear.library.Module;
 
 import java.util.Optional;
 
@@ -26,7 +27,7 @@ public class CalcController {
         return "calc";
     }
 
-    @RequestMapping(value = "/calc", method = RequestMethod.POST)
+    @RequestMapping(value = "/calc", method = RequestMethod.POST, params = "getGearRatio")
     public String getGearRatio(
             @ModelAttribute CalcUtil calcUtil,
             @RequestParam(required = false, defaultValue = "") String result,
@@ -39,6 +40,23 @@ public class CalcController {
 
         model.addAttribute("calcUtil", calcUtil);
         model.addAttribute("result", result);
+        return "calc";
+    }
+
+    @RequestMapping(value = "/calc", method = RequestMethod.POST, params = "getGearCenterDistance")
+    public String getGearCenterDistance(
+            @ModelAttribute CalcUtil calcUtil,
+            @RequestParam(required = false, defaultValue = "") String distance,
+            Model model
+    ) {
+        Optional<Gear> gear1 = gearRepo.findById(calcUtil.getId1());
+        Optional<Gear> gear2 = gearRepo.findById(calcUtil.getId2());
+        double ratio = GearLibrary.GEAR_LIBRARY.getGearCenterDistance(gear1.get().getTeeth(), gear2.get().getTeeth(), calcUtil.getTeethAngle(), Module.valueOf(gear1.get().getModule()));
+
+        distance = Double.toString(ratio);
+
+        model.addAttribute("calcUtil", calcUtil);
+        model.addAttribute("distance", distance);
         return "calc";
     }
 }
