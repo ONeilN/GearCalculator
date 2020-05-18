@@ -5,6 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<h2>Вычислить диаметр шестерни</h2>
+<form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
+    <table>
+        <tr>
+            <td>ID: <input type="text" th:field="*{id1}" /></td>
+        </tr>
+    </table>
+    <p><input type="submit" value="Вычислить" name="getDiameter"/></p>
+</form>
+<p>Результат: <span th:text="${diameter}" th:unless="${calcUtil.id1 == null}"></span></p>
+<hr>
 <h2>Вычислить передаточное отншение</h2>
 <form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
     <table>
@@ -29,6 +40,28 @@
     <p><input type="submit" value="Вычислить" name="getGearCenterDistance"/></p>
 </form>
 <p>Результат: <span th:text="${distance}" th:unless="${calcUtil.id1 == null}"></span></p>
+<hr>
+<h2>Вычислить делительный диаметр шестерни</h2>
+<form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
+    <table>
+        <tr>
+            <td>ID: <input type="text" th:field="*{id1}" /></td>
+        </tr>
+    </table>
+    <p><input type="submit" value="Вычислить" name="getGearDividingDiameter"/></p>
+</form>
+<p>Результат: <span th:text="${dividing}" th:unless="${calcUtil.id1 == null}"></span></p>
+<hr>
+<h2>Вычислить диаметр вершин зубьев шестерни</h2>
+<form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
+    <table>
+        <tr>
+            <td>ID: <input type="text" th:field="*{id1}" /></td>
+        </tr>
+    </table>
+    <p><input type="submit" value="Вычислить" name="getGearToothTopDiameter"/></p>
+</form>
+<p>Результат: <span th:text="${topdiameter}" th:unless="${calcUtil.id1 == null}"></span></p>
 <hr>
 </body>
 </html>
