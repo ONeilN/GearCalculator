@@ -5,6 +5,7 @@ import com.nugumanov.gearcalculator.repos.GearRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -26,6 +27,7 @@ public class GearController {
             params = "add")
     public String add(
             @ModelAttribute GearDomain gearDomain,
+            BindingResult result,
             Model model
     ) {
         gearRepo.save(gearDomain);

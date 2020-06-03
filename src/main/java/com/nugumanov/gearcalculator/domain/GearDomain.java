@@ -97,4 +97,17 @@ public class GearDomain {
 
         return gear;
     }
+
+    @Override
+    public String toString() {
+        return "GearDomain{" +
+                "id=" + id +
+                ", teeth1=" + teeth1 +
+                ", teeth2=" + teeth2 +
+                ", width=" + width +
+                ", module='" + module + '\'' +
+                ", angle=" + angle +
+                ", x=" + x +
+                '}';
+    }
 }

@@ -14,6 +14,8 @@ import ru.itis.software.engineering.gear.library.GearLibrary;
 import ru.itis.software.engineering.gear.library.Module;
 import ru.itis.software.engineering.gear.library.gearExample.Gear;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -25,6 +27,10 @@ public class CalcController {
     @RequestMapping(value = "/calc", method = RequestMethod.GET)
     public String calcForm(Model model) {
         model.addAttribute("calcUtil", new CalcUtil());
+
+        Iterable<GearDomain> gears = gearRepo.findAll();
+        model.addAttribute("gears", gears);
+
         return "calc";
     }
 
@@ -104,6 +110,10 @@ public class CalcController {
             @RequestParam(required = false, defaultValue = "") String topdiameter,
             Model model
     ) {
+        if (calcUtil.getId1() == null) {
+            System.out.println("Условие сработало!");
+            return "calc";
+        }
         Optional<GearDomain> gearDomain = gearRepo.findById(calcUtil.getId1());
 
         Gear gear = gearDomain.get().getGear();
@@ -113,8 +123,13 @@ public class CalcController {
         System.out.println(result);
         topdiameter = Double.toString(result);
 
+
+
         model.addAttribute("calcUtil", calcUtil);
         model.addAttribute("topdiameter", topdiameter);
+
+        Iterable<GearDomain> gears = gearRepo.findAll();
+        model.addAttribute("gears", gears);
 
         return "calc";
     }
