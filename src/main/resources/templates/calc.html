@@ -5,17 +5,118 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<p><a href="/addgear">Добавить шестерню</a></p>
+<h2>Вычислить диаметр шестерни</h2>
+<form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
+    <table>
+        <tr>
+            <td>ID: <select th:field="*{id1}">
+                <option value=""> -- </option>
+                <option th:each="gear : ${gears}"
+                        th:value="${gear.getId()}"
+                        th:utext="${gear.toString()}"/>
+            </select></td>
+        </tr>
+    </table>
+    <p><input type="submit" value="Вычислить" name="getDiameter"/></p>
+</form>
+<p>Результат: <span th:text="${diameter}" th:unless="${calcUtil.id1 == null}"></span></p>
+<hr>
 <h2>Вычислить передаточное отншение</h2>
 <form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
     <table>
         <tr>
-            <td>ID1: <input type="text" th:field="*{id1}" /></td>
-            <td>ID2: <input type="text" th:field="*{id2}" /></td>
+            <td>ID1: <select th:field="*{id1}">
+                <option value=""> -- </option>
+                <option th:each="gear : ${gears}"
+                        th:value="${gear.getId()}"
+                        th:utext="${gear.toString()}"/>
+            </select></td>
+            <td>ID2: <select th:field="*{id2}">
+                <option value=""> -- </option>
+                <option th:each="gear : ${gears}"
+                        th:value="${gear.getId()}"
+                        th:utext="${gear.toString()}"/>
+            </select></td>
         </tr>
     </table>
-    <p><input type="submit" value="Вычислить" name="gearRatio"/></p>
+    <p><input type="submit" value="Вычислить" name="getGearRatio"/></p>
 </form>
 <p>Результат: <span th:text="${result}" th:unless="${calcUtil.id1 == null}"></span></p>
 <hr>
+
+<h2>Вычислить расстояние между центрами шестерен</h2>
+<form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
+    <table>
+        <tr>
+            <td>ID1: <select th:field="*{id1}">
+                <option value=""> -- </option>
+                <option th:each="gear : ${gears}"
+                        th:value="${gear.getId()}"
+                        th:utext="${gear.toString()}"/>
+            </select></td>
+            <td>ID2: <select th:field="*{id2}">
+                <option value=""> -- </option>
+                <option th:each="gear : ${gears}"
+                        th:value="${gear.getId()}"
+                        th:utext="${gear.toString()}"/>
+            </select></td>
+            <td>Teeth Angle: <input type="text" th:field="*{teethAngle}" /></td>
+        </tr>
+    </table>
+    <p><input type="submit" value="Вычислить" name="getGearCenterDistance"/></p>
+</form>
+<p>Результат: <span th:text="${distance}" th:unless="${calcUtil.id1 == null}"></span></p>
+<hr>
+
+<h2>Вычислить делительный диаметр шестерни</h2>
+<form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
+    <select th:field="*{id1}">
+        <option value=""> -- </option>
+        <option th:each="gear : ${gears}"
+                th:value="${gear.getId()}"
+                th:utext="${gear.toString()}"/>
+    </select>
+    <p><input type="submit" value="Вычислить" name="getGearDividingDiameter"/></p>
+</form>
+<p>Результат: <span th:text="${dividing}" th:unless="${calcUtil.id1 == null}"></span></p>
+<hr>
+
+<h2>Вычислить диаметры вершин зубьев шестерни</h2>
+<form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
+    <select th:field="*{id1}">
+        <option value=""> -- </option>
+        <option th:each="gear : ${gears}"
+                th:value="${gear.getId()}"
+                th:utext="${gear.toString()}"/>
+    </select>
+    <select th:field="*{id2}">
+        <option value=""> -- </option>
+        <option th:each="gear : ${gears}"
+                th:value="${gear.getId()}"
+                th:utext="${gear.toString()}"/>
+    </select>
+    <p><input type="submit" value="Вычислить" name="getGearToothTopDiameter"/></p>
+</form>
+<p>Результат: <span th:text="${topdiameter}" th:unless="${calcUtil.id1 == null}"></span></p>
+<hr>
+
+<h2>Вычислить диаметры впадин зубьев шестерни</h2>
+<form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
+    <select th:field="*{id1}">
+        <option value=""> -- </option>
+        <option th:each="gear : ${gears}"
+                th:value="${gear.getId()}"
+                th:utext="${gear.toString()}"/>
+    </select>
+    <select th:field="*{id2}">
+        <option value=""> -- </option>
+        <option th:each="gear : ${gears}"
+                th:value="${gear.getId()}"
+                th:utext="${gear.toString()}"/>
+    </select>
+    <p><input type="submit" value="Вычислить" name="getGearToothBottomDiameter"/></p>
+</form>
+<p>Результат: <span th:text="${bottomdiameter}" th:unless="${calcUtil.id1 == null}"></span></p>
 </body>
 </html>

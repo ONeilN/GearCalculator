@@ -1,30 +1,35 @@
 package com.nugumanov.gearcalculator.domain;
 
+import ru.itis.software.engineering.gear.library.Module;
+import ru.itis.software.engineering.gear.library.gearExample.Gear;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Gear {
+public class GearDomain {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    private Long teeth;
+    private Long teeth1;
+    private Long teeth2;
     private Float width;
     private String module;
     private Double angle;
     private Double x;
 
-    public Gear() {
+    public GearDomain() {
 
     }
 
-    public Gear(Integer id, Long teeth, Float width, String module, Double angle, Double x) {
+    public GearDomain(Integer id, Long teeth1, Long teeth2, Float width, String module, Double angle, Double x) {
         this.id = id;
-        this.teeth = teeth;
+        this.teeth1 = teeth1;
+        this.teeth2 = teeth2;
         this.width = width;
         this.module = module;
         this.angle = angle;
@@ -39,12 +44,20 @@ public class Gear {
         this.id = id;
     }
 
-    public Long getTeeth() {
-        return teeth;
+    public Long getTeeth1() {
+        return teeth1;
     }
 
-    public void setTeeth(Long teeth) {
-        this.teeth = teeth;
+    public void setTeeth1(Long teeth1) {
+        this.teeth1 = teeth1;
+    }
+
+    public Long getTeeth2() {
+        return teeth2;
+    }
+
+    public void setTeeth2(Long teeth2) {
+        this.teeth2 = teeth2;
     }
 
     public Float getWidth() {
@@ -77,5 +90,23 @@ public class Gear {
 
     public void setX(Double x) {
         this.x = x;
+    }
+
+    public Gear getGear() {
+        Gear gear = new Gear(teeth1, teeth2, width, Module.valueOf(module), angle, x);
+
+        return gear;
+    }
+
+    @Override
+    public String toString() {
+        return  id +
+                "{ teeth1=" + teeth1 +
+                ", teeth2=" + teeth2 +
+                ", width=" + width +
+                ", module='" + module + '\'' +
+                ", angle=" + angle +
+                ", x=" + x +
+                '}';
     }
 }

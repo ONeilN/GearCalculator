@@ -1,10 +1,11 @@
 package com.nugumanov.gearcalculator.controller;
 
-import com.nugumanov.gearcalculator.domain.Gear;
+import com.nugumanov.gearcalculator.domain.GearDomain;
 import com.nugumanov.gearcalculator.repos.GearRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -15,9 +16,9 @@ public class GearController {
 
     @RequestMapping(value = "/addgear", method = RequestMethod.GET)
     public String greetingForm(Model model) {
-        Iterable<Gear> gears = gearRepo.findAll();
+        Iterable<GearDomain> gears = gearRepo.findAll();
         model.addAttribute("gears", gears);
-        model.addAttribute("gear", new Gear());
+        model.addAttribute("gear", new GearDomain());
         return "addGear";
     }
 
@@ -25,13 +26,15 @@ public class GearController {
             method = RequestMethod.POST,
             params = "add")
     public String add(
-            @ModelAttribute Gear gear,
+            @ModelAttribute GearDomain gearDomain,
+            BindingResult result,
             Model model
     ) {
-        gearRepo.save(gear);
+        gearRepo.save(gearDomain);
 
-        Iterable<Gear> gears = gearRepo.findAll();
+        Iterable<GearDomain> gears = gearRepo.findAll();
         model.addAttribute("gears", gears);
+        model.addAttribute("gearDomain", gearDomain);
         return "addGear";
     }
 }

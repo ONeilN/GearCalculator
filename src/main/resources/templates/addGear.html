@@ -5,8 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<p><a href="/calc">Расчеты</a></p>
 <form action="#" th:action="@{/addGear}" th:object="${gear}" method="post">
-    <p>Teeth1: <input type="text" th:field="*{teeth}" placeholder="For example: 50"/></p>
+    <p>Teeth1: <input type="text" th:field="*{teeth1}" placeholder="For example: 50"/></p>
+    <p>Teeth2: <input type="text" th:field="*{teeth2}" placeholder="For example: 50"/></p>
     <p>Width: <input type="text" th:field="*{width}" placeholder="For example: 20"/></p>
     <p>Module: <input type="text" th:field="*{module}" placeholder="For example: MODULE3"/></p>
     <p>Angle: <input type="text" th:field="*{angle}" placeholder="For example: 20"/></p>
@@ -17,6 +19,7 @@
     <tr>
         <td>ID</td>
         <td>Teeth1</td>
+        <td>Teeth2</td>
         <td>Width</td>
         <td>Module</td>
         <td>Angle</td>
@@ -24,7 +27,8 @@
     </tr>
     <tr th:each="gear : ${gears}">
         <td><span th:text="${gear.id}"></span></td>
-        <td><span th:text="${gear.teeth}"></span></td>
+        <td><span th:text="${gear.teeth1}"></span></td>
+        <td><span th:text="${gear.teeth2}"></span></td>
         <td><span th:text="${gear.width}"></span></td>
         <td><span th:text="${gear.module}"></span></td>
         <td><span th:text="${gear.angle}"></span></td>
