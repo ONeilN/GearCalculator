@@ -100,9 +100,8 @@ public class GearDomain {
 
     @Override
     public String toString() {
-        return "GearDomain{" +
-                "id=" + id +
-                ", teeth1=" + teeth1 +
+        return  id +
+                "{ teeth1=" + teeth1 +
                 ", teeth2=" + teeth2 +
                 ", width=" + width +
                 ", module='" + module + '\'' +

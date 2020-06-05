@@ -14,8 +14,6 @@ import ru.itis.software.engineering.gear.library.GearLibrary;
 import ru.itis.software.engineering.gear.library.Module;
 import ru.itis.software.engineering.gear.library.gearExample.Gear;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -40,14 +38,20 @@ public class CalcController {
             @RequestParam(required = false, defaultValue = "") String diameter,
             Model model
     ) {
-        Optional<GearDomain> gearDomain = gearRepo.findById(calcUtil.getId1());
+        if (calcUtil.getId1() == null) {
+            System.out.println("Условие сработало!");
+            return "calc";
+        }
 
-        Gear gear = gearDomain.get().getGear();
+        Gear gear = gearRepo.findById(calcUtil.getId1()).get().getGear();
 
         diameter = Double.toString(gear.getDiameter());
 
         model.addAttribute("calcUtil", calcUtil);
         model.addAttribute("diameter", diameter);
+
+        Iterable<GearDomain> gears = gearRepo.findAll();
+        model.addAttribute("gears", gears);
 
         return "calc";
     }
@@ -58,13 +62,22 @@ public class CalcController {
             @RequestParam(required = false, defaultValue = "") String result,
             Model model
     ) {
-        Optional<GearDomain> gear1 = gearRepo.findById(calcUtil.getId1());
-        Optional<GearDomain> gear2 = gearRepo.findById(calcUtil.getId2());
-        double ratio = GearLibrary.GEAR_LIBRARY.getGearRatio(gear1.get().getTeeth1(), gear2.get().getTeeth1());
+        if (calcUtil.getId1() == null) {
+            System.out.println("Условие сработало!");
+            return "calc";
+        }
+
+        Gear gear1 = gearRepo.findById(calcUtil.getId1()).get().getGear();
+        Gear gear2 = gearRepo.findById(calcUtil.getId2()).get().getGear();
+
+        double ratio = GearLibrary.GEAR_LIBRARY.getGearRatio(gear1.getGearTeeth(), gear2.getGearTeeth());
         result = Double.toString(ratio);
 
         model.addAttribute("calcUtil", calcUtil);
         model.addAttribute("result", result);
+
+        Iterable<GearDomain> gears = gearRepo.findAll();
+        model.addAttribute("gears", gears);
         return "calc";
     }
 
@@ -74,14 +87,23 @@ public class CalcController {
             @RequestParam(required = false, defaultValue = "") String distance,
             Model model
     ) {
-        Optional<GearDomain> gear1 = gearRepo.findById(calcUtil.getId1());
-        Optional<GearDomain> gear2 = gearRepo.findById(calcUtil.getId2());
-        double ratio = GearLibrary.GEAR_LIBRARY.getGearCenterDistance(gear1.get().getTeeth1(), gear2.get().getTeeth1(), calcUtil.getTeethAngle(), Module.valueOf(gear1.get().getModule()));
+        if (calcUtil.getId1() == null) {
+            System.out.println("Условие сработало!");
+            return "calc";
+        }
+
+        Gear gear1 = gearRepo.findById(calcUtil.getId1()).get().getGear();
+        Gear gear2 = gearRepo.findById(calcUtil.getId2()).get().getGear();
+
+        double ratio = GearLibrary.GEAR_LIBRARY.getGearCenterDistance(gear1.getGearTeeth(), gear2.getGearTeeth(), calcUtil.getTeethAngle(), gear1.getGearModule());
 
         distance = Double.toString(ratio);
 
         model.addAttribute("calcUtil", calcUtil);
         model.addAttribute("distance", distance);
+
+        Iterable<GearDomain> gears = gearRepo.findAll();
+        model.addAttribute("gears", gears);
 
         return "calc";
     }
@@ -92,14 +114,23 @@ public class CalcController {
             @RequestParam(required = false, defaultValue = "") String dividing,
             Model model
     ) {
-        Optional<GearDomain> gearDomain = gearRepo.findById(calcUtil.getId1());
+        if (calcUtil.getId1() == null) {
+            System.out.println("Условие сработало!");
+            return "calc";
+        }
+//        Optional<GearDomain> gearDomain = gearRepo.findById(calcUtil.getId1());
 
-        double result = GearLibrary.GEAR_LIBRARY.getGearDividingDiameter(gearDomain.get().getTeeth1(), gearDomain.get().getAngle(), Module.valueOf(gearDomain.get().getModule()));
+        Gear gear = gearRepo.findById(calcUtil.getId1()).get().getGear();
+
+        double result = GearLibrary.GEAR_LIBRARY.getGearDividingDiameter(gear.getGearTeeth(), gear.getTeethAngle(), gear.getGearModule());
 
         dividing = Double.toString(result);
 
         model.addAttribute("calcUtil", calcUtil);
         model.addAttribute("dividing", dividing);
+
+        Iterable<GearDomain> gears = gearRepo.findAll();
+        model.addAttribute("gears", gears);
 
         return "calc";
     }
@@ -116,17 +147,47 @@ public class CalcController {
         }
         Optional<GearDomain> gearDomain = gearRepo.findById(calcUtil.getId1());
 
-        Gear gear = gearDomain.get().getGear();
-        double deltaY = GearLibrary.GEAR_LIBRARY.getDeltaY(gearDomain.get().getTeeth1(), gearDomain.get().getTeeth2(), gearDomain.get().getAngle(), Module.valueOf(gearDomain.get().getModule()));
+        Gear gear1 = gearRepo.findById(calcUtil.getId1()).get().getGear();
+        Gear gear2 = gearRepo.findById(calcUtil.getId2()).get().getGear();
 
-        double result = GearLibrary.GEAR_LIBRARY.getGearToothTopDiameter(gear.getGearTeeth(), gear.getTeethAngle(), gear.getGearModule(), gearDomain.get().getX(), deltaY);
-        System.out.println(result);
+        double deltaY = GearLibrary.GEAR_LIBRARY.getDeltaY(gear1.getGearTeeth(), gear2.getGearTeeth(), gear1.getTeethAngle(), gear1.getGearModule());
+
+        double result = GearLibrary.GEAR_LIBRARY.getGearToothTopDiameter(gear1.getGearTeeth(), gear2.getTeethAngle(), gear1.getGearModule(), gearDomain.get().getX(), deltaY);
+
         topdiameter = Double.toString(result);
-
-
 
         model.addAttribute("calcUtil", calcUtil);
         model.addAttribute("topdiameter", topdiameter);
+
+        Iterable<GearDomain> gears = gearRepo.findAll();
+        model.addAttribute("gears", gears);
+
+        return "calc";
+    }
+
+    @RequestMapping(value = "/calc", method = RequestMethod.POST, params = "getGearToothBottomDiameter")
+    public String getGearToothBottomDiameter(
+            @ModelAttribute CalcUtil calcUtil,
+            @RequestParam(required = false, defaultValue = "") String bottomdiameter,
+            Model model
+    ) {
+        if (calcUtil.getId1() == null) {
+            System.out.println("Условие сработало!");
+            return "calc";
+        }
+        Optional<GearDomain> gearDomain = gearRepo.findById(calcUtil.getId1());
+
+        Gear gear1 = gearRepo.findById(calcUtil.getId1()).get().getGear();
+        Gear gear2 = gearRepo.findById(calcUtil.getId2()).get().getGear();
+
+        double deltaY = GearLibrary.GEAR_LIBRARY.getDeltaY(gear1.getGearTeeth(), gear2.getGearTeeth(), gear1.getTeethAngle(), gear1.getGearModule());
+
+        double result = GearLibrary.GEAR_LIBRARY.getGearToothBottomDiameter(gear1.getGearTeeth(), gear2.getTeethAngle(), gear1.getGearModule(), Double.valueOf(gearDomain.get().getX()).longValue(), deltaY);
+
+        bottomdiameter = Double.toString(result);
+
+        model.addAttribute("calcUtil", calcUtil);
+        model.addAttribute("bottomdiameter", bottomdiameter);
 
         Iterable<GearDomain> gears = gearRepo.findAll();
         model.addAttribute("gears", gears);
