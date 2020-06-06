@@ -17,25 +17,31 @@
     <p>X: <input type="text" th:field="*{x}" placeholder="For example: 0"/></p>
     <p><input type="submit" value="Добавить" th:name="add"/></p>
 </form>
-<table>
+<table class="table">
+    <thead class="thead-dark">
     <tr>
-        <td>ID</td>
-        <td>Teeth1</td>
-        <td>Teeth2</td>
-        <td>Width</td>
-        <td>Module</td>
-        <td>Angle</td>
-        <td>X</td>
+        <th scope="col">#</th>
+        <th scope="col">Teeth1</th>
+        <th scope="col">Teeth2</th>
+        <th scope="col">Width</th>
+        <th scope="col">Module</th>
+        <th scope="col">Angle</th>
+        <th scope="col">X</th>
+        <th scope="col">Delete</th>
     </tr>
+    </thead>
+    <tbody>
     <tr th:each="gear : ${gears}">
-        <td><span th:text="${gear.id}"></span></td>
+        <th scope="col"><span th:text="${gear.id}"></span></th>
         <td><span th:text="${gear.teeth1}"></span></td>
         <td><span th:text="${gear.teeth2}"></span></td>
         <td><span th:text="${gear.width}"></span></td>
         <td><span th:text="${gear.module}"></span></td>
         <td><span th:text="${gear.angle}"></span></td>
         <td><span th:text="${gear.x}"></span></td>
+        <td><button type="button" class="btn btn-danger">Delete</button></td>
     </tr>
+    </tbody>
 </table>
 </body>
 </html>
