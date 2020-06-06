@@ -5,7 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p><a href="/calc">Расчеты</a></p>
+<!--Navigation Bar-->
+<div th:include="parts/navbar"></div>
+
 <form action="#" th:action="@{/addGear}" th:object="${gear}" method="post">
     <p>Teeth1: <input type="text" th:field="*{teeth1}" placeholder="For example: 50"/></p>
     <p>Teeth2: <input type="text" th:field="*{teeth2}" placeholder="For example: 50"/></p>
