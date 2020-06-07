@@ -15,14 +15,17 @@ public class GearController {
     private GearRepo gearRepo;
 
     @RequestMapping(value = "/addgear", method = RequestMethod.GET)
-    public String greetingForm(Model model) {
+    public String gearControllerMain(@ModelAttribute GearDomain gearDomain,
+                               Model model
+    ) {
         Iterable<GearDomain> gears = gearRepo.findAll();
         model.addAttribute("gears", gears);
-        model.addAttribute("gear", new GearDomain());
-        return "addGear";
+        model.addAttribute("gearDomain", new GearDomain());
+
+        return "addgear";
     }
 
-    @RequestMapping(value = "/addGear",
+    @RequestMapping(value = "/addgear",
             method = RequestMethod.POST,
             params = "add")
     public String add(
@@ -31,10 +34,26 @@ public class GearController {
             Model model
     ) {
         gearRepo.save(gearDomain);
-
         Iterable<GearDomain> gears = gearRepo.findAll();
         model.addAttribute("gears", gears);
         model.addAttribute("gearDomain", gearDomain);
-        return "addGear";
+
+        return "addgear";
+    }
+
+    @RequestMapping(value = "/addgear",
+            method = RequestMethod.POST,
+            params = "cleardb")
+    public String clearDB(
+            @ModelAttribute GearDomain gearDomain,
+            BindingResult result,
+            Model model
+    ) {
+        gearRepo.deleteAll();
+        Iterable<GearDomain> gears = gearRepo.findAll();
+        model.addAttribute("gears", gears);
+        model.addAttribute("gearDomain", gearDomain);
+
+        return "addgear";
     }
 }
