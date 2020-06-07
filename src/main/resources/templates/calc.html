@@ -5,7 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p><a href="/addgear">Добавить шестерню</a></p>
+<!--Navigation Bar-->
+<div th:include="parts/navbar"></div>
+
 <h2>Вычислить диаметр шестерни</h2>
 <form action="#" th:action="@{/calc}" th:object="${calcUtil}" method="post">
     <table>
