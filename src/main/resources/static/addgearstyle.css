@@ -1,0 +1,9 @@
+#gearaddform {
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: lightgray;
+    border-radius: 10px;
+}
