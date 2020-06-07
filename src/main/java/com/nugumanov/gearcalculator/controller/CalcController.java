@@ -39,7 +39,11 @@ public class CalcController {
             Model model
     ) {
         if (calcUtil.getId1() == null) {
-            System.out.println("Условие сработало!");
+            model.addAttribute("calcUtil", calcUtil);
+            model.addAttribute("diameter", diameter);
+
+            Iterable<GearDomain> gears = gearRepo.findAll();
+            model.addAttribute("gears", gears);
             return "calc";
         }
 
