@@ -3,19 +3,38 @@
 <head>
     <title>Gear Calculator</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="addgearstyle.css">
 </head>
 <body>
 <!--Navigation Bar-->
 <div th:include="parts/navbar"></div>
 
-<form action="#" th:action="@{/addGear}" th:object="${gear}" method="post">
-    <p>Teeth1: <input type="text" th:field="*{teeth1}" placeholder="For example: 50"/></p>
-    <p>Teeth2: <input type="text" th:field="*{teeth2}" placeholder="For example: 50"/></p>
-    <p>Width: <input type="text" th:field="*{width}" placeholder="For example: 20"/></p>
-    <p>Module: <input type="text" th:field="*{module}" placeholder="For example: MODULE3"/></p>
-    <p>Angle: <input type="text" th:field="*{angle}" placeholder="For example: 20"/></p>
-    <p>X: <input type="text" th:field="*{x}" placeholder="For example: 0"/></p>
-    <p><input type="submit" value="Добавить" th:name="add"/></p>
+<form action="#" id="gearaddform" th:action="@{/addgear}" th:object="${gearDomain}" method="post">
+    <div class="form-group">
+        <label><strong>Teeth1</strong></label>
+        <input type="text" class="form-control" th:field="*{teeth1}" placeholder="For example: 50"/>
+    </div>
+    <div class="form-group">
+        <label><strong>Teeth2</strong></label>
+        <input type="text" class="form-control" th:field="*{teeth2}" placeholder="For example: 50"/>
+    </div>
+    <div class="form-group">
+        <label><strong>Width</strong></label>
+        <input type="text" class="form-control" th:field="*{width}" placeholder="For example: 20"/>
+    </div>
+    <div class="form-group">
+        <label><strong>Module</strong></label>
+        <input type="text" class="form-control" th:field="*{module}" placeholder="For example: MODULE3"/>
+    </div>
+    <div class="form-group">
+        <label><strong>Angle</strong></label>
+        <input type="text" class="form-control" th:field="*{angle}" placeholder="For example: 20"/>
+    </div>
+    <div class="form-group">
+        <label><strong>X</strong></label>
+        <input type="text" class="form-control" th:field="*{x}" placeholder="For example: 0"/>
+    </div>
+    <input class="btn btn-success" type="submit" value="Добавить" th:name="add"/>
 </form>
 <table class="table text-center">
     <thead class="thead-dark">
@@ -39,9 +58,12 @@
         <td><span th:text="${gear.module}"></span></td>
         <td><span th:text="${gear.angle}"></span></td>
         <td><span th:text="${gear.x}"></span></td>
-        <td><button type="button" class="btn btn-danger">Delete</button></td>
+        <td><button type="button" class="btn btn-danger">Удалить</button></td>
     </tr>
     </tbody>
 </table>
+<form action="#" th:action="@{/addgear}" th:object="${gearDomain}" method="post">
+    <input type="submit" class="btn btn-danger" value="Очистить" th:name="cleardb"/>
+</form>
 </body>
 </html>
