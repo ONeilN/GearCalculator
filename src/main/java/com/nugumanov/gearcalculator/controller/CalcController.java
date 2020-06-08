@@ -38,8 +38,12 @@ public class CalcController {
             @RequestParam(required = false, defaultValue = "") String diameter,
             Model model
     ) {
-        if (calcUtil.getId1() == null) {
-            System.out.println("Условие сработало!");
+        if (calcUtil.getId1() == null || calcUtil.getId2() == null) {
+            model.addAttribute("calcUtil", calcUtil);
+            model.addAttribute("diameter", diameter);
+
+            Iterable<GearDomain> gears = gearRepo.findAll();
+            model.addAttribute("gears", gears);
             return "calc";
         }
 
@@ -62,8 +66,12 @@ public class CalcController {
             @RequestParam(required = false, defaultValue = "") String result,
             Model model
     ) {
-        if (calcUtil.getId1() == null) {
-            System.out.println("Условие сработало!");
+        if (calcUtil.getId1() == null || calcUtil.getId2() == null) {
+            model.addAttribute("calcUtil", calcUtil);
+            model.addAttribute("result", result);
+
+            Iterable<GearDomain> gears = gearRepo.findAll();
+            model.addAttribute("gears", gears);
             return "calc";
         }
 
@@ -87,8 +95,12 @@ public class CalcController {
             @RequestParam(required = false, defaultValue = "") String distance,
             Model model
     ) {
-        if (calcUtil.getId1() == null) {
-            System.out.println("Условие сработало!");
+        if (calcUtil.getId1() == null || calcUtil.getId2() == null) {
+            model.addAttribute("calcUtil", calcUtil);
+            model.addAttribute("distance", distance);
+
+            Iterable<GearDomain> gears = gearRepo.findAll();
+            model.addAttribute("gears", gears);
             return "calc";
         }
 
@@ -114,11 +126,14 @@ public class CalcController {
             @RequestParam(required = false, defaultValue = "") String dividing,
             Model model
     ) {
-        if (calcUtil.getId1() == null) {
-            System.out.println("Условие сработало!");
+        if (calcUtil.getId1() == null || calcUtil.getId2() == null) {
+            model.addAttribute("calcUtil", calcUtil);
+            model.addAttribute("dividing", dividing);
+
+            Iterable<GearDomain> gears = gearRepo.findAll();
+            model.addAttribute("gears", gears);
             return "calc";
         }
-//        Optional<GearDomain> gearDomain = gearRepo.findById(calcUtil.getId1());
 
         Gear gear = gearRepo.findById(calcUtil.getId1()).get().getGear();
 
@@ -141,8 +156,12 @@ public class CalcController {
             @RequestParam(required = false, defaultValue = "") String topdiameter,
             Model model
     ) {
-        if (calcUtil.getId1() == null) {
-            System.out.println("Условие сработало!");
+        if (calcUtil.getId1() == null || calcUtil.getId2() == null) {
+            model.addAttribute("calcUtil", calcUtil);
+            model.addAttribute("topdiameter", topdiameter);
+
+            Iterable<GearDomain> gears = gearRepo.findAll();
+            model.addAttribute("gears", gears);
             return "calc";
         }
         Optional<GearDomain> gearDomain = gearRepo.findById(calcUtil.getId1());
@@ -171,8 +190,12 @@ public class CalcController {
             @RequestParam(required = false, defaultValue = "") String bottomdiameter,
             Model model
     ) {
-        if (calcUtil.getId1() == null) {
-            System.out.println("Условие сработало!");
+        if (calcUtil.getId1() == null || calcUtil.getId2() == null) {
+            model.addAttribute("calcUtil", calcUtil);
+            model.addAttribute("bottomdiameter", bottomdiameter);
+
+            Iterable<GearDomain> gears = gearRepo.findAll();
+            model.addAttribute("gears", gears);
             return "calc";
         }
         Optional<GearDomain> gearDomain = gearRepo.findById(calcUtil.getId1());
