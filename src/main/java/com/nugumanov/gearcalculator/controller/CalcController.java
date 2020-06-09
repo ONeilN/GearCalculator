@@ -38,6 +38,7 @@ public class CalcController {
             @RequestParam(required = false, defaultValue = "") String diameter,
             Model model
     ) {
+        calcUtil.setId2(0);
         if (calcUtil.getId1() == null || calcUtil.getId2() == null) {
             model.addAttribute("calcUtil", calcUtil);
             model.addAttribute("diameter", diameter);
@@ -126,6 +127,7 @@ public class CalcController {
             @RequestParam(required = false, defaultValue = "") String dividing,
             Model model
     ) {
+        calcUtil.setId2(0);
         if (calcUtil.getId1() == null || calcUtil.getId2() == null) {
             model.addAttribute("calcUtil", calcUtil);
             model.addAttribute("dividing", dividing);
