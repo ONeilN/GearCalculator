@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Belt Calculator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="addbeltstyle.css">
+</head>
+<body>
+<!--Navigation Bar-->
+<div th:include="parts/navbar"></div>
+
+<form action="#" id="beltaddform" th:action="@{/addbelt}" th:object="${beltDomain}" method="post">
+    <div class="form-group">
+        <label><strong>Length</strong></label>
+        <input type="text" class="form-control" th:field="*{length}" placeholder="For example: 50"/>
+    </div>
+    <input class="btn btn-success" type="submit" value="Добавить" th:name="add"/>
+</form>
+<table class="table text-center">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Length</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="belt : ${belts}">
+        <th scope="col"><span th:text="${belt.id}"></span></th>
+        <td><span th:text="${belt.length}"></span></td>
+        <td><button type="button" class="btn btn-danger">Удалить</button></td>
+    </tr>
+    </tbody>
+</table>
+<form action="#" th:action="@{/addbelt}" th:object="${beltDomain}" method="post">
+    <input type="submit" class="btn btn-danger" value="Очистить" th:name="cleardb"/>
+</form>
+</body>
+</html>
