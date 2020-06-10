@@ -7,6 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.itis.software.engineering.gear.library.Module;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class GearController {
@@ -18,9 +23,11 @@ public class GearController {
     public String gearControllerMain(@ModelAttribute GearDomain gearDomain,
                                Model model
     ) {
+        List<Module> modules = new ArrayList<>(Arrays.asList(Module.values()));
         Iterable<GearDomain> gears = gearRepo.findAll();
         model.addAttribute("gears", gears);
         model.addAttribute("gearDomain", new GearDomain());
+        model.addAttribute("modules", modules);
 
         return "addgear";
     }
@@ -33,10 +40,23 @@ public class GearController {
             BindingResult result,
             Model model
     ) {
+        if (gearDomain.getModule().isEmpty()) {
+            Iterable<GearDomain> gears = gearRepo.findAll();
+            model.addAttribute("gears", gears);
+            model.addAttribute("gearDomain", gearDomain);
+
+            List<Module> modules = new ArrayList<>(Arrays.asList(Module.values()));
+            model.addAttribute("modules", modules);
+
+            return "addgear";
+        }
         gearRepo.save(gearDomain);
         Iterable<GearDomain> gears = gearRepo.findAll();
         model.addAttribute("gears", gears);
         model.addAttribute("gearDomain", gearDomain);
+
+        List<Module> modules = new ArrayList<>(Arrays.asList(Module.values()));
+        model.addAttribute("modules", modules);
 
         return "addgear";
     }
