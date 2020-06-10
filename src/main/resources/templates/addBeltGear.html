@@ -12,23 +12,23 @@
 <form action="#" id="beltgearaddform" th:action="@{/addbeltgear}" th:object="${beltGearDomain}" method="post">
     <div class="form-group">
         <label><strong>Ratio</strong></label>
-        <input type="text" class="form-control" th:field="*{ratio}" placeholder="For example: 50"/>
+        <input type="number" step="any" class="form-control" th:field="*{ratio}" placeholder="For example: 50,0" required/>
     </div>
     <div class="form-group">
         <label><strong>SlipRatio</strong></label>
-        <input type="text" class="form-control" th:field="*{slipRatio}" placeholder="For example: 50"/>
+        <input type="number" step="any" class="form-control" th:field="*{slipRatio}" placeholder="For example: 50,0" required/>
     </div>
     <div class="form-group">
         <label><strong>CenterDistance</strong></label>
-        <input type="text" class="form-control" th:field="*{centerDistance}" placeholder="For example: 20"/>
+        <input type="number" step="any" class="form-control" th:field="*{centerDistance}" placeholder="For example: 20,0" required/>
     </div>
     <div class="form-group">
         <label><strong>RotationSpeedIdling</strong></label>
-        <input type="text" class="form-control" th:field="*{rotationSpeedIdling}" placeholder="For example: MODULE3"/>
+        <input type="number" step="any" class="form-control" th:field="*{rotationSpeedIdling}" placeholder="For example: 5,5" required/>
     </div>
     <div class="form-group">
         <label><strong>RotationSpeedLoad</strong></label>
-        <input type="text" class="form-control" th:field="*{rotationSpeedLoad}" placeholder="For example: 20"/>
+        <input type="number" step="any" class="form-control" th:field="*{rotationSpeedLoad}" placeholder="For example: 20,0" required/>
     </div>
     <input class="btn btn-success" type="submit" value="Добавить" th:name="add"/>
 </form>

@@ -12,23 +12,23 @@
 <form action="#" id="pulleyaddform" th:action="@{/addpulley}" th:object="${pulleyDomain}" method="post">
     <div class="form-group">
         <label><strong>Diameter</strong></label>
-        <input type="text" class="form-control" th:field="*{diameter}" placeholder="For example: 50"/>
+        <input type="number" step="any" class="form-control" th:field="*{diameter}" placeholder="For example: 50" required/>
     </div>
     <div class="form-group">
         <label><strong>Width</strong></label>
-        <input type="text" class="form-control" th:field="*{width}" placeholder="For example: 50"/>
+        <input type="number" step="any" class="form-control" th:field="*{width}" placeholder="For example: 50" required/>
     </div>
     <div class="form-group">
         <label><strong>ShaftPower</strong></label>
-        <input type="text" class="form-control" th:field="*{shaftPower}" placeholder="For example: 20"/>
+        <input type="number" step="any" class="form-control" th:field="*{shaftPower}" placeholder="For example: 20" required/>
     </div>
     <div class="form-group">
         <label><strong>ShaftAngularVelocity</strong></label>
-        <input type="text" class="form-control" th:field="*{shaftAngularVelocity}" placeholder="For example: 20"/>
+        <input type="number" step="any" class="form-control" th:field="*{shaftAngularVelocity}" placeholder="For example: 20" required/>
     </div>
     <div class="form-group">
         <label><strong>RotationSpeed</strong></label>
-        <input type="text" class="form-control" th:field="*{rotationSpeed}" placeholder="For example: 20"/>
+        <input type="number" step="any" class="form-control" th:field="*{rotationSpeed}" placeholder="For example: 20" required/>
     </div>
     <input class="btn btn-success" type="submit" value="Добавить" th:name="add"/>
 </form>
