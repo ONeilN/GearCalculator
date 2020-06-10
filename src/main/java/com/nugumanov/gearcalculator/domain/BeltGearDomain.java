@@ -1,9 +1,7 @@
 package com.nugumanov.gearcalculator.domain;
 
-import ru.itis.software.engineering.gear.library.Module;
 import ru.itis.software.engineering.gear.library.belt.FlatBeltGear;
 import ru.itis.software.engineering.gear.library.belt.VBeltGear;
-import ru.itis.software.engineering.gear.library.gearExample.Gear;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
